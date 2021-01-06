@@ -65,9 +65,11 @@ const testPing = async () => {
 }
 
 const summarizeSpeed = (result: ResultEvent): string => {
-	return `${result.download.bandwidth / DOWNLOAD_IN_BYTES}% ${
-		result.upload.bandwidth / UPLOAD_IN_BYTES
-	}% ${result.ping.latency}ms`
+	return [
+		((result.download.bandwidth / DOWNLOAD_IN_BYTES) * 100).toFixed(1) + '%',
+		((result.upload.bandwidth / UPLOAD_IN_BYTES) * 100).toFixed(1) + '%',
+		`${result.ping.latency}ms`,
+	].join(' ')
 }
 
 const testSpeed = async () => {
